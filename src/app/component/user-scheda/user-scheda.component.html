@@ -1,0 +1,86 @@
+<div class="popup-overlay" [ngClass]="{'visible': isVisible}">
+    <div class="popup">
+        <span class="close-btn"
+        (click)="deactivateUserSchedaPopup()">&times;</span>
+        <div class="container">
+            <div class="row">
+                <h4 class="text-dark text-center">Scheda Cliente</h4>
+            </div>
+            <div class="row">
+                <div class="col-6 text-center">
+                    <!-- <h6 class="mt-4 mb-3">Patente</h6> -->
+                    <img [src]="user?.licenseImage" class="img-thumbnail" alt="cover"
+                        style="width:250px;max-width:250px; height:150px; max-height:150px;">
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Nome e cognome: </strong> {{user?.name}} {{user?.lastname}}</p>    
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Codice fiscale: </strong> {{user?.taxCode}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>N° Patente: </strong>{{user?.licenseNumber}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>E-mail: </strong> {{user?.mail}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <!-- Sezione Indirizzo-->
+                <div class="col-6">
+                    <div class="row">
+                        <h5 class="mb-3"><i class="fas fa-home me-2"></i>Indirizzo</h5>
+                        <div class="col-12">
+                            <p><strong>Indirizzo: </strong> {{user?.address?.street}} {{user?.address?.civic}}</p>    
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>CAP: </strong>{{user?.address?.cap}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Comune: </strong>{{user?.address?.town}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Provincia: </strong>{{user?.address?.province}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sezione Dati di pagamento -->
+                <div class="col-6">
+                    <div class="row">
+                        <h5 class="mb-3"><i class="fa-regular fa-credit-card me-2" style="color: #000000;"></i>Dati pagamento</h5>
+                        <div class="col-12">
+                            <p><strong>Carta di credito: </strong>{{user?.payment?.type}}</p>    
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Numero carta: </strong>{{user?.payment?.cardNumber}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Scadenza: </strong>{{user?.payment?.expiration}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

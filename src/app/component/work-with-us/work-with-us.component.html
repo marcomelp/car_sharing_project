@@ -1,0 +1,87 @@
+<div class="container-full">
+  <app-navbar></app-navbar>
+  <div class="container">
+    <header>
+      <h1 class="text-center pb-2  fw-bold">Unisciti alla Nostra Squadra di Autonoleggio</h1>
+      <p>Scopri le opportunità di lavoro disponibili e invia la tua candidatura.</p>
+      <p>Unisciti al nostro team e contribuisci a rendere la mobilità più sostenibile e conveniente.</p>
+    </header>
+
+    <section class="offerte-lavoro">
+      <h2>Posizioni aperte</h2>
+      <p>Attualmente stiamo cercando persone motivate per le seguenti</p>
+      <div class="offerta">
+        <h3><strong>Responsabile Operativo</strong></h3>
+        <p>
+          Se hai esperienza nella gestione di flotte di veicoli e sei orientato ai dettagli, potresti essere il
+          candidato ideale per questa posizione. 
+        </p>
+       <button (click)="scrollToCandidatura('opzione1')">Invia Candidatura</button>
+      </div>
+
+      <div class="offerta">
+        <h3><strong>Responsabili di filiale</strong></h3>
+        <p>Se sei un comunicatore eccezionale e hai una passione per aiutare le persone, potresti far parte del nostro
+          team di assistenza clienti.
+        </p>
+        <button (click)="scrollToCandidatura('opzione2')">Invia Candidatura</button>
+      </div>
+
+      <div class="offerta">
+        <h3><strong>Assistenza Clienti</strong></h3>
+        <p>Cerchiamo individui con esperienza nella gestione di team e nella supervisione delle operazioni di una
+          filiale di autonoleggio. Se hai leadership e voglia di crescere con noi, questa potrebbe essere l'opportunità
+          giusta.
+        </p>
+        <button (click)="scrollToCandidatura('opzione3')">Invia Candidatura</button>
+      </div>
+    </section>
+
+    <div class="contenitore">
+      <img src="../../../assets/image/wwu.png" alt="Immagine">
+    </div>
+
+    <section class="modulo-candidatura" id="modulo-candidatura">
+      <h2>Invia la tua Candidatura</h2>
+      <form>
+        <div class="campo">
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" name="nome" required>
+        </div>
+
+        <div class="campo">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="campo">
+          <label for="posizione">Posizione desiderata:</label>
+          <select id="posizione" name="posizione">
+              <option value="opzione1">Responsabile operativo</option>
+              <option value="opzione2">Responsabili di filiale</option>
+              <option value="opzione3">Assistenza clienti</option>
+          </select>
+        </div>
+      
+        <div class="campo">
+          <label for="altrePosizioni">Altre posizioni:</label>
+          <input type="text" id="altrePosizioni" name="altrePosizioni" required>
+        </div>
+
+        <div class="campo">
+          <label for="curriculum">Carica il tuo Curriculum:</label>
+          <input type="file" id="curriculum" name="curriculum" accept=".pdf,.doc,.docx">
+        </div>
+
+        <div class="campo">
+          <label for="messaggio">Messaggio (opzionale):</label>
+          <textarea id="messaggio" name="messaggio"></textarea>
+        </div>
+
+        <button type="submit">Invia Candidatura</button>
+      </form>
+    </section>
+  </div>
+  <app-footer></app-footer>
+</div>
+

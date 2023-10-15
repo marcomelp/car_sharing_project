@@ -1,0 +1,27 @@
+.nav-item-spaced {
+    margin-right: 50px; /* Aggiungi il margine desiderato tra le scritte */
+}
+
+img {
+    height: 100px;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    color: white; /* Sostituisci 'white' con il colore desiderato */
+    font-size: large;
+  }
+
+  .navbar-light .navbar-nav .nav-link:hover {
+    color: red; /* Sostituisci #your_desired_color con il colore desiderato */
+  }
+
+  button:hover{
+    background-color: red;
+    cursor: pointer;
+  }
+
+  @media screen and (min-width:992px){
+    .nav-item-spaced {
+    line-height:80px;
+    }
+  }

@@ -1,0 +1,129 @@
+<!-- Sidebar -->
+<aside class="position-sticky">
+    <div class="list-group list-group-flush mt-4">
+
+        <!-- Sidebar home-->
+        <h5 *ngIf="position && position == 'home'" class="list-group-item py-2 ripple" aria-current="true">
+            Indice
+        </h5>
+        <li *ngIf="position && position == 'home'" class="list-group-item custom-text-large"
+            aria-current="true">
+            <i class="fa-solid fa-person-rays fa-xs me-2" style="color: #000000;"></i><span>A chi si rivolge</span>
+        </li>
+        <li *ngIf="position && position == 'home'" class="list-group-item custom-text-large"
+            aria-current="true">
+            <i class="fa-solid fa-question fa-xs me-2" style="color: #000000;"> </i><span>Come funziona</span>
+        </li>
+        <li *ngIf="position && position == 'home'" class="list-group-item custom-text-large"
+            aria-current="true">
+            <i class="fa-solid fa-check fa-xs me-2" style="color: #000000;"></i><span>Info generali</span>
+        </li>
+        <hr>
+        <h5 *ngIf="position && position == 'home'" class="list-group-item py-2 ripple" aria-current="true">
+            Area utente
+        </h5>
+        <a *ngIf="position && position == 'home'" class="list-group-item list-group-item-action py-2 ripple"
+            aria-current="true" style="cursor: pointer;" (click)="activateUserRegFormPopup()">
+            <i class="fa-solid fa-pen-to-square fa-2xs me-2" style="color: #000000;"></i><span>Registrati</span>
+            <!------->
+        </a>
+        <a *ngIf="position && position == 'home'" class="list-group-item list-group-item-action py-2 ripple"
+            aria-current="true" style="cursor: pointer;" (click)="activateUserLoginFormPopup()">
+            <i class="fa-solid fa-right-to-bracket fa-xs me-2" style="color: #000000;"></i><span>Login</span>
+        </a>
+        <hr>
+        <h5 *ngIf="position && position == 'home'" class="list-group-item py-2 ripple" aria-current="true">
+            Area amministratore
+        </h5>
+        <a *ngIf="position && position == 'home'" class="list-group-item list-group-item-action py-2 ripple"
+            aria-current="true" style="cursor: pointer;" (click)="activateAdminLoginFormPopup()">
+            <i class="fa-solid fa-right-to-bracket fa-xs me-2" style="color: #000000;"></i><span>Login</span>
+        </a>
+        <img src="../../../assets/image/Magazine.jpeg" class="img-fluid" *ngIf="position && position == 'home'">
+
+        <!-- Sidebar admin -->
+        <h5 *ngIf="position && position == 'admin'" class="list-group-item py-2 ripple" aria-current="true">
+            Area amministratore
+        </h5>
+        <hr *ngIf="position && position == 'admin'">
+        <a *ngIf="position && position == 'admin'" class="list-group-item list-group-item-action py-2 ripple"
+            aria-current="true" style="cursor: pointer;" (click)="activateStandoffAreasTable()">
+            <i class="fa-solid fa-map-location-dot fa-xs me-2" style="color: #000000;"></i><span>Aree di
+                stazionamento</span>
+        </a>
+        <a *ngIf="position && position == 'admin'" class="list-group-item list-group-item-action py-2 ripple"
+            aria-current="true" style="cursor: pointer;" (click)="activateStandoffAreaFormPopup()">
+            <i class="fa-solid fa-map-location-dot fa-xs me-2" style="color: #000000;"></i><span>Aggiunta
+                stazionamento</span>
+        </a>
+        <hr *ngIf="position && position == 'admin'">
+        <a *ngIf="position && position == 'admin'" class="list-group-item list-group-item-action py-2 ripple"
+            aria-current="true" style="cursor: pointer;" (click)="activateVehicleTable()">
+            <i class="fa-solid fa-car fa-xs me-2" style="color: #000000;"></i><span>Flotta auto</span>
+        </a>
+        <a *ngIf="position && position == 'admin'" class="list-group-item list-group-item-action py-2 ripple"
+            aria-current="true" style="cursor: pointer;" (click)="activateVehicleFormPopup()">
+            <i class="fa-solid fa-car fa-xs me-2" style="color: #000000;"></i><span>Aggiungi auto</span>
+        </a>
+        <hr *ngIf="position && position == 'admin'">
+        <a *ngIf="position && position == 'admin'" class="list-group-item list-group-item-action py-2 ripple"
+            aria-current="true" style="cursor: pointer;" (click)="activateRentalsTable()">
+            <i class="fa-solid fa-list fa-xs me-2" style="color: #000000;"></i><span>Gestione noleggi</span>
+        </a>
+        <a *ngIf="position && position == 'admin'" class="list-group-item list-group-item-action py-2 ripple"
+            aria-current="true" style="cursor: pointer;" (click)="activateUsersTable()">
+            <i class="fa-solid fa-users fa-xs me-2" style="color: #000000;"></i><span>Gestione utenti</span>
+        </a>
+        <hr *ngIf="position && position == 'admin'">
+        <a *ngIf="position && position == 'admin'" class="list-group-item list-group-item-action py-2 ripple"
+            aria-current="true" style="cursor: pointer;" (click)="adminLogoutEvent()">
+            <i class="fa-solid fa-right-from-bracket fa-rotate-180 fa-xs me-2"
+                style="color: #000000;"></i><span>Logout</span>
+        </a>
+
+        <!-- Sidebar User -->
+        <h5 *ngIf="position && position == 'user'" class="list-group-item py-2 ripple" aria-current="true">
+            Area Utente
+        </h5>
+        <hr *ngIf="position && position == 'user'" class="list-group m-0 text-small">
+        <ul *ngIf="position && position == 'user'" class="list-group m-0 text-small">
+            <li class="list-group-item custom-text-large">
+                <i class="fas fa-user me-1"></i> {{users?.name}} {{users?.lastname}}
+            </li>
+            <li class="list-group-item custom-text-large">
+                <i class="fas fa-envelope me-1"></i> {{users?.mail}}
+            </li>
+            <li class="list-group-item custom-text-large">
+                <i class="fas fa-id-card me-1"></i> {{users?.taxCode}}
+            </li>
+            <li class="list-group-item custom-text-large">
+                <i class="fas fa-home me-1"></i> {{users?.address?.street}}, {{users?.address?.civic}}
+            </li>
+            <img *ngIf="users?.licenseImage" [src]="users?.licenseImage" class="img-fluid">
+        </ul>
+        <hr *ngIf="position && position == 'user'">
+        <a *ngIf="position && position == 'user'" class="list-group-item list-group-item-action py-2 ripple"
+            aria-current="true" style="cursor: pointer;" (click)="updateDatas()">
+            <i class="fa-solid fa-list fa-xs me-2" style="color: #000000;"></i><span>Modifica dati profilo</span>
+        </a>
+        <!-- <a *ngIf="position && position == 'user'" class="list-group-item list-group-item-action py-2 ripple" aria-current="true" 
+                    style="cursor: pointer;" ><span>Modifica foto patente</span>
+                </a> -->
+
+        <hr *ngIf="position && position == 'user'">
+
+        <a *ngIf="position && position == 'user'" class="list-group-item list-group-item-action py-2 ripple"
+            aria-current="true" style="cursor: pointer;" (click)="userLogoutEvent()">
+            <i class="fa-solid fa-right-from-bracket fa-rotate-180 fa-xs me-2"
+                style="color: #000000;"></i><span>Logout</span>
+        </a>
+
+    </div>
+</aside>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main>
+    <div class="container pt-4"></div>
+</main>
+<!--Main layout-->

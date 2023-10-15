@@ -1,0 +1,43 @@
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.popup-overlay.visible {
+    display: block;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 5px;
+    border-style: outset;
+    border-color: #75757580;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    width: 600px;
+    padding: 20px;
+    height: 300px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.2s; /* Effetto di transizione al passaggio del mouse */
+    margin-left: 20px; /* Aggiungi padding per spostare la "X" all'interno */
+    
+}
+
+.close-btn:hover {
+    color: red; /* Cambia il colore al passaggio del mouse */
+}

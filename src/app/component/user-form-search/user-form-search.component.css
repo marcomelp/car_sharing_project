@@ -1,0 +1,23 @@
+ /* Stile per il bordo tondo nero intorno al form */
+form {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Stile per il bottone nero */
+button {
+    border-radius: 5px;
+    padding: 10px;
+}
+button:hover {
+    cursor: pointer;
+}
+label{
+    font-weight: bold;
+}
+
+h5{
+    margin-top: 50px;
+    font-weight: bold;
+}

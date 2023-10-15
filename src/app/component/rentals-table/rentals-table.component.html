@@ -1,0 +1,26 @@
+<table *ngIf="isVisible" class="table table-hover caption-top">
+    <caption>
+        <i class="fa-solid fa-list fa-xs me-3" style="color: #000000;"></i>
+        Noleggi Registrati
+    </caption>
+    <thead>
+        <tr>
+            <th scope="col" class="text-center">Targa Veicolo</th>
+            <th scope="col" class="text-center">Ritiro</th>
+            <th scope="col" class="text-center">Riconsegna</th>
+            <th scope="col" class="text-center">Utente</th>
+            <th scope="col" class="text-center">Stato</th>
+            <th scope="col" class="text-center">Incasso</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let rental of rentals">
+            <td class="text-center">{{rental.vehicle?.plateNumber}}</td>
+            <td class="text-center">{{rental.pickupTiming | date: 'dd/MM/yyyy HH:mm'}}</td>
+            <td class="text-center">{{rental.returnTiming | date: 'dd/MM/yyyy HH:mm'}}</td>
+            <td class="text-center">{{rental.user?.name}}</td>
+            <td class="text-center">{{rental.state}}</td>
+            <td class="text-center">{{rental.amount}} €</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+<div class="container-full">
+        <app-navbar></app-navbar>
+        <div class="row">
+            <div class="col-2">
+                <app-sidebar
+                    [position]="'home'"
+                    (adminLoginFormPopup)="activateAdminLoginFormPopup()"
+                    (userLoginFormPopup)="activateUserLoginFormPopup()"
+                    (userRegFormPopup)="activateUserRegFormPopup()">
+                </app-sidebar>
+            </div>
+            <div class="col-10">
+                <app-content></app-content>
+            </div>
+        </div>
+        <app-footer></app-footer>
+</div>
+
+<app-admin-login
+    [isVisible]="adminLoginPopupVisible"
+    (leave)="deactivateAdminLoginFormPopup()"
+    (loginChecked)="adminLoginManager()">
+</app-admin-login>
+
+<app-user-login
+    [isVisible]="userLoginPopupVisible"
+    (leave)="deactivateUserLoginFormPopup()"
+    (login)="userLoginManager()">
+</app-user-login>
+
+<app-user-reg
+    [isVisible]="userRegPopupVisible"
+    (leave)="deactivateUserRegFormPopup()"
+    (register)="userRegistrationManager()">
+</app-user-reg>

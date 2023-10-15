@@ -1,0 +1,77 @@
+<div class="popup-overlay" [ngClass]="{'visible': isVisible}"> <!--aggiungo ngClass e visible fa parte del CSS-->
+    <div class="popup">
+        <span class="close-btn" (click)="leaveVehicleForm(f)">&times;</span>
+        <div class="row">
+            <h4 class="text-dark text-center">Nuovo Veicolo</h4>
+            <h6 *ngIf="serverError" class="text-danger text-center">{{serverError}}</h6>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <form #f="ngForm" (submit)="formManager(f)">
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Targa:</label>
+                            <input [ngModel]="vehicle?.plateNumber" type="text" name="plateNumber" class="form-control" required>
+                        </div>
+                        <div class="col-6">
+                            <label>Area di stazionamento:</label>
+                            <select [ngModel] name="standoffArea" class="form-select" required>
+                                <ng-container *ngFor="let standoffArea of standoffareas">
+                                    <option [value]="standoffArea.id" *ngIf="standoffArea.state !== 'O'">
+                                      {{standoffArea.code}}
+                                    </option>
+                                </ng-container>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Immatricolazione:</label>
+                            <input [ngModel]="vehicle?.registrationYear" type="number" name="registrationYear" class="form-control" required>
+                        </div>
+                        <div class="col-6">
+                            <label>Km effettuati:</label>
+                            <input  [ngModel]="vehicle?.lastKm" type="number" name="lastKm" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label>Ultima data di detenzione:</label>
+                            <input [ngModel]="vehicle?.lastDetenctionDate" type="date" name="lastDetenctionDate" class="form-control" required>
+                        </div>
+                        <div class="col-3">
+                            <label>Data di consegna:</label>
+                            <input [ngModel]="vehicle?.lastReviewDate" type="date" name="lastReviewDate" class="form-control" required>
+                        </div>
+                        <div class="col-3">
+                            <label>Tariffa (al minuto):</label>
+                            <input [ngModel]="vehicle?.rate" type="number" name="rate" class="form-control" required>
+                        </div>
+                        <!-- <div class="col-9 text-center">
+                            
+                             <input type="file" name="cover" class="form-control" style="display: none;"
+                                accept="image/jpeg,image/png"
+                                maxlength="1048576"
+                                (change)="uploadCover($event)" #cover>
+                            <button type="button" class="btn btn-outline-warning mt-4"
+                                (click)="cover.click()">
+                                {{bookCover ? 'Modifica immagine di copertina' : 'Carica immagine di copertina'}}
+                            </button>
+                        </div>  -->
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12 text-center">
+                            <input type="submit" class="btn btn-outline-danger" 
+                             [disabled]="f.invalid">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="col-5 text-center">
+                <h6 class="mt-4 mb-3">Immagine Caricata</h6>
+                <img [src] ="bookCover ? bookCover : '../../../assets/image/book-marker.jpg'" class="img-thumbnail" alt="cover" 
+                    style="width:210px;max-width:210px;height:310px;max-height:310px;"> 
+            </div> -->
+        </div>
+    </div>
+</div>

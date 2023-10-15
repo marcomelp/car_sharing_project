@@ -1,0 +1,32 @@
+.table {
+    border: 1px solid black;
+    margin-top: 50px;
+    
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+caption {
+    color: black;    font-size: 18px;
+    font-weight: bold;
+    
+}
+
+.table.visible {
+    display: block;
+}
+
+button:hover {
+    color: red;
+    cursor: pointer;
+    background-color: white;
+}

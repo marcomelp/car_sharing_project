@@ -1,0 +1,64 @@
+
+.list-group-item-action:hover {
+    color: red; 
+    background-color: #f8f9fa; 
+}
+
+.list-group-item {
+    border: none;
+    margin-left: 12px;
+}
+
+.list-group-item {
+    white-space: nowrap;       /* Evita il ritorno a capo del testo */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: max-width 0.3s ease;
+}
+
+.list-group-item:hover {
+    overflow: visible;
+}
+
+hr{
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+aside {
+    position: sticky;
+    top: 50px; 
+    height: calc(100vh - 58px);
+}
+
+img{
+    width: 200px;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 4px;
+}
+
+li{
+    padding-bottom: 0px;
+    padding-right: 5px;
+    padding-left: 0px;
+
+}
+
+.text-small {
+    font-size: 14px;
+}
+
+a{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+h5{
+    padding-left: 0px;
+}
+
+.custom-text-large {
+    font-size: 15px
+}

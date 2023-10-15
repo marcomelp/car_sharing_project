@@ -1,0 +1,16 @@
+<div class="popup-overlay" [ngClass]="{'visible': isVisible}"> <!---->
+    <div class="popup">
+        <span class="close-btn" (click)="deactivateRemoveAutoConfirmPopup()">&times;</span>
+        <h5 class="text-danger text-center">Conferma cancellazione</h5>
+        <h6 class="text-center">Sei sicuro di voler eliminare {{vehicle?.plateNumber}}?</h6>
+        <form #f="ngForm" > <!--(leave)="confirmFormContacts(f)"-->
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <button type="button" class="btn btn-outline-danger mx-2" (click)="deleteVehicle(vehicle?.id!)">
+                        Elimina
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

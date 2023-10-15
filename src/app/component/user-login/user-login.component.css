@@ -1,0 +1,85 @@
+/* .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+  }
+  .popup-overlay.visible {
+    display: block;
+  }
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 20px;
+    border-style:outset;
+    border-color:#75757580;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    padding: 20px;
+  } */
+
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+  }
+  .popup-overlay.visible {
+    display: block;
+  }
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    border-radius: 5px;
+    border-style:outset;
+    border-color:#75757580;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    padding: 20px;
+    position: relative;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: -10px; 
+    right: -12px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.2s;
+    color: white;
+  }
+
+.close-btn:hover {
+  color: red;
+}
+
+label{
+  color: white;
+}
+
+img{
+  max-width: 150px;
+}
+
+.gradient-custom-2 {
+  /* fallback for old browsers */
+  background: #fccb90;
+  
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, #0d0d0d, #733738, #971b1b, #f50101);
+  
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #000000, #503839, #932020, #eb0303);
+  }

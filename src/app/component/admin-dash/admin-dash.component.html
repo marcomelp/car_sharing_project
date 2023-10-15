@@ -1,0 +1,102 @@
+<div class="container-full">
+    <app-navbar></app-navbar>
+    <div class="row">
+
+        <!-- Sidebar sinistra -->
+        <div class="col-2">
+            <app-sidebar
+            [position]="'admin'"
+            (standoffAreaFormPopup)="activateStandoffAreaFormPopup()"
+            (vehicleFormPopup)="activateVehicleFormPopup()"
+            (vehicleTable)="activateVehicleTable()"
+            (rentalsTable)="activateRentalsTable()"
+            (usersTable)="activateUsersTable()"
+            (standoffAreasTable)="activateStandoffAreasTable()"
+            (adminLogout)="adminLogoutManager()">
+            </app-sidebar>
+        </div>
+
+        <!-- Tabelle -->
+        <div class="col-8">
+            <app-vehicles-table
+                [isVisible]="vehicleTableVisible"
+                (vehicleScheda)="activateVehicleScheda($event)"
+                [vehicles]="vehicles">
+            </app-vehicles-table>
+
+            <app-standoff-areas-table
+                [isVisible]="standoffAreasTableVisible"
+                (standoffAreaScheda)="activateStandoffAreaScheda($event)"
+                [standoffareas]="standoffAreas">
+            </app-standoff-areas-table>
+
+            <app-users-table
+                [isVisible]="usersTableVisible"
+                (userScheda)="activateUserScheda($event)"
+                [users]="users">
+            </app-users-table>
+
+            <app-rentals-table
+                [isVisible]="rentalsTableVisible"
+                [rentals]="rentals">
+            </app-rentals-table>                       
+        </div>
+
+        <!-- Sidebar destra -->
+        <app-admin-sidebar class="col-2"
+        [vehiclelibero]="vehicleLibero"
+        [vehicleoccupato]="vehicleOccupato"
+        [standoffarealibero]="standoffareaLibero"
+        [standoffareaoccupato]="standoffareaOccupato"
+        [userregistrati]="userRegistrati"
+        [rentalincorso]="rentalIncorso"
+        [rentalprenotati]="rentalPrenotati"
+        [rentalterminati]="rentalTerminati">
+        </app-admin-sidebar>
+    </div>
+    <app-footer></app-footer>
+    <app-popup-standoff
+        [isVisible]="standoffFormPopupVisible"
+        (leave)="deactivateStandoffAreaFormPopup()">
+    </app-popup-standoff>
+    <app-popup-vehicle
+        [isVisible]="vehicleFormPopupVisible"
+        (leave)="deactivateVehicleFormPopup()"
+        [standoffareas]="standoffForVehicles">
+    </app-popup-vehicle>
+
+    <!--SCHEDA DATI UTENTE-->
+    <app-user-scheda
+        [isVisible]="userSchedaPopupVisible"
+        [user]="selectedUser"
+        (leave)="deactivateUserSchedaPopup()">
+    </app-user-scheda> 
+
+    <!--SCHEDA DATI AREA STAZIONAMENTO-->
+    <app-standoff-area-scheda
+        [isVisible]="standoffAreaSchedaPopupVisible"
+        [standoffareas]="selectedStandoffArea"
+        (leave)="deactivateStandoffAreaSchedaPopup()"
+        (openPopup)="activateRemoveStandoffConfirm($event)">
+    </app-standoff-area-scheda>
+    <app-remove-standoff-confirm-popup
+        [isVisible]="removeStandoffConfirmPopupVisible"
+        [standoffArea]="standoffToDelete"
+        (leave)="deactivateRemoveStandoffConfirm()"
+        (delete)="deleteStandoffArea($event)">
+    </app-remove-standoff-confirm-popup>
+
+    <!--SCHEDA DATI VEICOLO-->
+    <app-admin-vehicle-scheda
+        [isVisible]="vehicleSchedaPopupVisible"
+        [vehicles]="selectedVehicle"
+        (leave)="deactivateVehicleSchedaPopup()"
+        (openPopup)="activateRemoveAutoConfirm($event)">
+    </app-admin-vehicle-scheda> 
+    <app-remove-auto-confirm-popup
+        [isVisible]="removeAutoConfirmPopupVisible"
+        [vehicle]="vehicleToDelete"
+        (leave)="deactivateRemoveAutoConfirm()"
+        (delete)="deleteVehicle($event)">
+    </app-remove-auto-confirm-popup>
+</div>

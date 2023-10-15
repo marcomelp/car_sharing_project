@@ -1,0 +1,20 @@
+<h5><i class="fa-regular fa-clock me-3" style="color: #000000;"></i>Seleziona data e orario di noleggio:</h5>
+<form #f="ngForm" (submit)="selectAvailableVehiclesManager(f)" >
+    <div class="row align-items-center">
+        <div class="col-5">
+            <label>Ritiro:</label>
+            <input [ngModel] type="datetime-local" name="pickupTiming" class="form-control" required><br>
+        </div>
+        <div class="col-5">
+            <label>Riconsegna:</label>
+            <input [ngModel] type="datetime-local" name="returnTiming" class="form-control" required><br>
+        </div>
+        <div class="col-2 text-center">
+            <button type="submit" class="btn btn-outline-danger"
+            [disabled]="f.invalid"
+            (click)="f">Cerca</button>
+        </div>
+        <p *ngIf="dateTimeError" class="text-danger text-center mt-2">{{dateTimeError}}</p>
+    </div>
+</form>
+

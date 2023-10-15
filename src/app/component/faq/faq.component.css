@@ -1,0 +1,15 @@
+.container-full{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+section{
+    padding: 20px;
+}
+
+img{
+    height: 30px;
+}

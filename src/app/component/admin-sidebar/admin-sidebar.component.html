@@ -1,0 +1,63 @@
+<!--Main Navigation-->
+<aside>
+    <!--INSERIRE METODO PER REGISTRAZIONE NUOVO CLIENTE-->
+
+    <!-- Sidebar -->
+        <div class="position-sticky">
+            <div class="list-group list-group-flush mt-4">
+                <h5 class="list-group-item py-2 ripple" aria-current="true">
+                    Area di Stazionamento
+                </h5>
+                <ul>
+                    <li class="list-group-item py-2 " aria-current="true">
+                        <i class="fa-solid fa-square-check fa-xs me-3 ripple" style="color: #4dff00;"></i><span>Libere: {{standoffarealibero}}</span>
+                    </li>
+                    <li class="list-group-item py-2 " aria-current="true">
+                        <i class="fa-solid fa-square-xmark fa-xs me-3 ripple" style="color: #ff0000;"></i><span>Occupate: {{standoffareaoccupato}}</span>
+                    </li>
+                </ul>
+                <hr>
+                <h5 class="list-group-item py-2 ripple" aria-current="true">
+                     Autoveicoli
+                </h5>
+                <ul>
+                    <li class="list-group-item py-2 " aria-current="true">
+                        <i class="fa-solid fa-square-check fa-xs me-3 ripple" style="color: #4dff00;"></i><span>In stazionamento: {{vehiclelibero}}</span>
+                    </li>
+                    <li class="list-group-item py-2 " aria-current="true">
+                        <i class="fa-solid fa-square-xmark fa-xs me-3 ripple" style="color: #ff0000;"></i><span>Su strada: {{vehicleoccupato}}</span>
+                    </li>
+                </ul>
+                <hr>
+                <h5 class="list-group-item py-2 ripple" aria-current="true">
+                    Dati Utenza
+                </h5>
+
+                <ul>
+                    <li class="list-group-item py-2 " aria-current="true">
+                        <i class="fa-solid fa-users fa-xs me-3" style="color: #000000;"></i><span>Utenti registrati: {{userregistrati}}</span>
+                    </li>
+                    <li class="list-group-item py-2 " aria-current="true">
+                        <i class="fa-solid fa-car fa-xs me-3" style="color: #000000;"></i><span>Noleggi prenotati: {{rentalprenotati}}</span>
+                    </li>
+                    <li class="list-group-item py-2 " aria-current="true">
+                        <i class="fa-solid fa-car fa-xs me-3" style="color: #000000;"></i><span>Noleggi in corso: {{rentalincorso}}</span>
+                    </li>
+                    <li class="list-group-item py-2 " aria-current="true">
+                        <i class="fa-solid fa-car fa-xs me-3" style="color: #000000;"></i><span>Noleggi terminati: {{rentalterminati}}</span>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+    <!-- Sidebar -->
+
+    
+</aside>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main>
+    <div class="container pt-4"></div>
+</main>
+<!--Main layout-->

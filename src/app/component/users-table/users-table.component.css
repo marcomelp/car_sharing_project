@@ -1,0 +1,40 @@
+.table {
+    border: 1px solid rgb(0, 0, 0);
+    margin-top: 50px;
+    
+}
+
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+caption {
+    color: black;    font-size: 18px;
+    font-weight: bold;
+    
+}
+
+.table.visible {
+    display: block;
+}
+
+button:hover {
+    color: red;
+    cursor: pointer;
+    background-color: white;
+}
+
+.truncate-text {
+    white-space: nowrap;       /* Evita il ritorno a capo del testo */
+    overflow: hidden;          /* Nasconde il testo oltre la larghezza del contenitore */
+    text-overflow: ellipsis;   /* Aggiunge i puntini di sospensione (...) quando il testo è troppo lungo */
+    max-width: 100px;          /* Imposta la larghezza massima per il testo */
+}

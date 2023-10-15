@@ -1,0 +1,34 @@
+<div class="popup-overlay" [ngClass]="{'visible': isVisible}">
+    <div class="popup">
+        <span class="close-btn" (click)="deactivateVehicleSchedaPopup()">&times;</span>
+        <div class="container">
+                <h5 class="text-dark text-center">Veicolo {{vehicles?.plateNumber}}</h5>
+            <div class="row">
+                <div class="col-7">
+                            <p><strong>Targa: </strong> {{vehicles?.plateNumber}}</p>
+                            <p><strong>Immatricolazione: </strong> {{vehicles?.registrationYear}}</p>
+                            <p><strong>Data di riconsegna: </strong> {{vehicles?.lastReviewDate|date:'dd-MM-yyyy'}}</p>
+                </div>
+                <div class="col-5">
+                            <p><strong>Kilometraggio: </strong>{{vehicles?.lastKm}}</p>
+                            <p><strong>Stato: </strong>
+                                            <i *ngIf="vehicles?.state == 'L'" class="fa-solid fa-square-check fa-xs me-3 ripple"
+                                                style="color: #4dff00;"></i>
+                                            <i *ngIf="vehicles?.state == 'P'" class="fa-solid fa-square-xmark fa-xs me-3 ripple"
+                                                style="color: #ff0000;"></i>
+                            </p>
+                            <p><strong>Tariffa: </strong>{{vehicles?.rate}}€/min</p>
+                </div>
+                <div class="col-12">
+                    <p><strong>Ultima data di detenzione: </strong> {{vehicles?.lastDetenctionDate|date:'dd-MM-yyyy'}}</p>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <button class="btn btn-danger" (click)="activateRemoveAutoConfirmPopup(vehicles!)">Elimina auto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

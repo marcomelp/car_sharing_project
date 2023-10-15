@@ -1,0 +1,12 @@
+.social svg {
+    margin-right: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.bi:hover {
+    fill: #FF0000;
+    /* Cambia il colore di riempimento quando il mouse è sopra l'icona */
+    cursor: pointer;
+}
+

@@ -1,0 +1,54 @@
+<div class="popup-overlay" [ngClass]="{'visible':isVisible}"> <!--[ngClass]="{'visible':isVisible}"-->
+    <!--vedi CSS, se la variabile visible diventa true si attiva il display:block, con [ngClass] si aggiunge una classe-->
+    <div class="popup">
+        <span class="close-btn" (click)="leaveStandoffAreaForm(f)">&times;</span>
+        <div class="row">
+            <h5 class="text-dark text-center">
+                Nuova Area di Stazionamento</h5>
+            <h6 *ngIf="serverError" class="text-danger text-center">{{serverError}}</h6>
+        </div>
+        <form #f="ngForm" (submit)="formManager(f)"> <!--assegno un id al form, e gli asssegno un valore(ngForm) per sfruttare le caratteristiche e funzionalità, così posso passarlo al metodo formManager
+        (submit è l'evento che si scatena)-->
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label>Codice:</label>
+                    <input [ngModel]="standoffArea?.code" type="text" name="code" class="form-control" required
+                    pattern="[a-zA-Z\s'àèìòù0-9]{1,5}" #code="ngModel">
+                    <!--ngModel verrano utilizzati come modelli, con pattern=a-z mi faccio andar bene tutte le lettere, con A-Z mi faccio andar bene le lettere maiusc, con \s accetto gli spazi e le varie cose, con {1,50} dico che voglio almeno un carattere e non più di 50, il numero massimo potrei anche non metterlo, se non metto la virgola dico che voglio quel numero di caratteri -->
+                    <small class="text-danger" [ngStyle]="{'display':code.invalid && code.dirty ? 'block' : 'none'}">
+                        <!--dentro le graffe si assegna l'attributo di stile, si vanno a fissare una o più condizioni, se è true assume il valore block, altrimenti block.-->
+                        caratteri non ammessi
+                    </small>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label>Via:</label>
+                    <input [ngModel]="standoffArea?.street" type="text" name="street" class="form-control" required
+                        pattern="[a-zA-Z\s'àèìòù]{1,50}" #street="ngModel">
+                    <small class="text-danger" [ngStyle]="{'display':street.invalid && street.dirty ? 'block' : 'none'}">
+                        <!--dentro le graffe si assegna l'attributo di stile, si vanno a fissare una o più condizioni, se è true assume il valore block, altrimenti block. name è il riferimento(vedi riga 11)-->
+                        caratteri non ammessi
+                    </small>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label>Civico:</label>
+                    <input [ngModel]="standoffArea?.civic" type="text" name="civic" class="form-control" required
+                        pattern="[a-zA-Z\s'àèìòù0-9]{1,5}" #civic="ngModel">
+                    <small class="text-danger" [ngStyle]="{'display':civic.invalid && civic.dirty ? 'block' : 'none'}">
+                        <!--dentro le graffe si assegna l'attributo di stile, si vanno a fissare una o più condizioni, se è true assume il valore block, altrimenti block. name è il riferimento(vedi riga 11)-->
+                        caratteri non ammessi
+                    </small>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <input type="submit" class="btn btn-outline-danger ms-4"
+                    [disabled]="f.invalid"> <!--così facendo mi disabilita il bottone registra fin quando inserisco i dati giusti--> 
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

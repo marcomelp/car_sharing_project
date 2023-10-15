@@ -1,0 +1,61 @@
+<div class="container-full">
+    <app-navbar></app-navbar>
+    
+    <div class="row">
+        <!-- Sidebar sinistra -->
+        <div class="col-2">
+            <app-sidebar
+            [position]="'user'"
+            (userLogout)="userLogoutManager()"
+            [users]="user"
+            (update)="activateUserUpdatePopup()"
+            ></app-sidebar>
+        </div>
+
+        <!-- Colonna centrale-->
+        <div class="col-5">
+            <div class="d-flex flex-column">
+                <app-user-form-search
+                    (vehiclesTable)="activateVehiclesTable()"
+                    (available)="rentalPeriodManager($event)">
+                </app-user-form-search>
+            </div>
+            <app-user-vehicles-table
+                [vehicles]="vehicles"
+                (vehicleScheda)="activateVehicleScheda($event)"
+                [isVisible]="vehiclesTableVisible">
+            </app-user-vehicles-table>
+        </div>
+
+        <!-- Sidebar destra -->
+        <div class="col-5">
+            <app-user-rentals-table
+            [user]="user"
+            (popup)="activateRemoveRentalConfirmPopup($event)"
+            ></app-user-rentals-table>
+        </div>
+    </div>
+    <app-remove-rental-confirm-popup
+    (leave)="deactivateRemoveRentalConfirmPopup()"
+    (delete)="deleteRental($event)"
+    [rental]="rentalToDelete"
+    [isVisible]="rentalRemovalPopupVisible">
+    </app-remove-rental-confirm-popup>
+    <app-user-reg
+        [isVisible]="userUpdatePopupVisible"
+        (leave)="deactivateUserRegPopup()"
+        [userr]="user"
+        [licenseImage]="userToUpdateImage">
+    </app-user-reg>
+    <app-vehicle-scheda
+        [datiNoleggio]="datiNoleggio"
+        [importoNoleggio]="importoNoleggio"
+        [vehicle]="vehicleToDisplay"
+        [isVisible]="vehicleSchedaPopupVisible"
+        [user]="user"
+        (leave)="deactivateVehicleSchedaPopup()"
+        (leaveAndClose)="deactivateVehicleSchedaPopupAndClose()">
+    </app-vehicle-scheda>
+    
+    <app-footer></app-footer>
+</div>

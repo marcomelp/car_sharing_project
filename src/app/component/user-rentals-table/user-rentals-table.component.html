@@ -1,0 +1,29 @@
+<table class="table table-hover caption-top">
+    <caption>
+        <i class="fa-solid fa-list fa-xs me-3" style="color: #000000;"></i> 
+        Noleggi Effettuati
+    </caption>
+    <thead>
+        <tr>
+            <th scope="col" class="text-center">Targa</th>
+            <th scope="col" class="text-center">Ritiro</th>
+            <th scope="col" class="text-center">Riconsegna</th>
+            <th scope="col" class="text-center">Spesa</th>
+            <th scope="col" class="text-center">Stato</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let rental of user?.rentals">
+            <td class="text-center">{{rental.vehicle?.plateNumber}}</td>
+            <td class="text-center">{{rental.pickupTiming|date:'dd-MM-yyyy HH:mm'}}</td>
+            <td class="text-center">{{rental.returnTiming|date:'dd-MM-yyyy HH:mm'}}</td>
+            <td class="text-center">{{rental.amount}} €</td>
+            <td class="text-center">{{rental.state}}</td>
+            <td class="text-center"><button class="btn btn-sm btn-dark me-2"
+                (click)="activateRemoveRentalConfirmPopup(rental!)">
+                <i class="fa-solid fa-trash fa-xs" style="color: #ffffff;"></i>
+            </button>
+        </tr>
+    </tbody>
+</table>

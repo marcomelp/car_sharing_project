@@ -1,0 +1,352 @@
+<div class="popup-overlay" [ngClass]="{'visible': isVisible}">
+    <div class="popup">
+        <span class="close-btn" (click)="leaveUserRegForm(f)">&times;</span>
+                <h3 class="text-dark text-center">{{userr? 'Modifica dati' : 'Nuovo profilo'}}</h3>
+        <form #f="ngForm" (submit)="formManager(f)">
+            <div class="row mt-4">
+                <div class="col-4">
+                    <!-- Dati Anagrafici -->
+                    <div class="row">
+                        <h5><i class="fas fa-id-card me-2"></i>Dati anagrafici</h5>
+                        <div class="col-6">
+                            <label>Nome:</label>
+                            <input [ngModel]="userr?.name" type="text" name="nome" class="form-control" required
+                            pattern="[a-zA-Z\s'àèìòù]{1,50}" #name="ngModel">
+                            <small class="text-danger" [ngStyle]="{'display':name.invalid && name.dirty ? 'block' : 'none'}">
+                                Caratteri non ammessi
+                            </small>
+                            <!-- <input [ngModel]="userr?.name" type="text" name="nome" class="form-control" required #name="ngModel" >
+                            <div *ngIf="f.controls['nome']?.touched && !checkRegexp(f.value.nome, '[a-zA-Z\\sàèìòù]{1,50}$')" class="validation-error">Inserisci nome</div> -->
+                        </div>
+                        <div class="col-6">
+                            <label>Cognome:</label>
+                            <input [ngModel]="userr?.lastname" type="text" name="cognome" class="form-control" required
+                            pattern="[a-zA-Z\s'àèìòù]{1,50}" #lastname="ngModel">
+                            <small class="text-danger" [ngStyle]="{'display':lastname.invalid && lastname.dirty ? 'block' : 'none'}">
+                                Caratteri non ammessi
+                            </small>
+                            <!-- <input [ngModel]="userr?.lastname" type="text" name="cognome" class="form-control" required #lastname="ngModel">
+                            <div *ngIf="f.controls['cognome']?.touched && f.controls['cognome'].invalid" class="validation-error">Inserisci cognome</div> -->
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Codice Fiscale:</label>
+                            <input [ngModel]="userr?.taxCode" type="text" name="codiceFiscale" class="form-control"
+                            required
+                            pattern="[A-Z]{6}\d{2}[ABCDEHLMPRST]{1}\d{2}[A-Z]\d{3}[A-Z]$" #taxCode="ngModel">
+                            <small class="text-danger" [ngStyle]="{'display':taxCode.invalid && taxCode.dirty ? 'block' : 'none'}">
+                                Codice fiscale non valido
+                            </small>
+                            <!-- <input [ngModel]="userr?.taxCode" type="text" name="codiceFiscale" class="form-control"
+                                required #taxCode="ngModel" >
+                            <div *ngIf="f.controls['codiceFiscale']?.touched && !checkRegexp(f.value.codiceFiscale, '^[A-Z]{6}\\d{2}[ABCDEHLMPRST]{1}\\d{2}[A-Z]\\d{3}[A-Z]$')" class="validation-error">Inserisci codice fiscale</div>     -->
+                        </div>
+                        <div class="col-6">
+                            <label>Numero Patente:</label>
+                            <input [ngModel]="userr?.licenseNumber" type="text" name="numeroPatente" class="form-control"
+                                required pattern="^[A-Z]{2}\d{7}[A-Z]$" #licenseNumber="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':licenseNumber.invalid && licenseNumber.dirty ? 'block' : 'none'}">
+                                    Numero patente non valido
+                                </small>
+                            <!-- <input [ngModel]="userr?.licenseNumber" type="text" name="numeroPatente" class="form-control"
+                                required #licenseNumber="ngModel">
+                                <div *ngIf="f.controls['numeroPatente']?.touched && !checkRegexp(f.value.numeroPatente, '^[A-Za-z0-9]{1,10}$')" class="validation-error">Inserisci numero Patente  corretto</div> -->
+                        </div>
+                    </div>
+                    <!-- Dati Profilo -->
+                    <div class="form-group mt-4">
+                        <h5><i class="fas fa-user me-2"></i>Dati profilo</h5>
+                        <div class="row">
+                            <div class="col-12">
+                                <label>Email:</label> 
+                                <span [ngStyle]="{'display': duplicate ? 'inline' : 'none'}" class="text-danger">
+                                    {{duplicate}}
+                                </span>
+                                <input [ngModel]="userr?.mail" type="email" name="email" class="form-control" required
+                                pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}" #mail="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':mail.invalid && mail.dirty ? 'block' : 'none'}">
+                                    Indirizzo e-mail non valido
+                                </small>
+                                <!-- <input [ngModel]="userr?.mail" type="email" name="email" class="form-control" required #mail="ngModel">
+                                <div *ngIf="f.controls['email']?.touched && !checkRegexp(f.value.email, '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}')" class="validation-error">Inserisci email corretta</div> -->
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <label>Password:</label>
+                                <input [ngModel]="userr?.password" type="password" name="password" class="form-control"
+                                    required #password="ngModel"
+                                    [ngStyle]="{'background-color': password.invalid && password.dirty ? '#fa8072' : 'white'}">
+                                    
+                            </div>
+<!--VECCHIA CONFERM PASS--> <div class="col-6"> 
+                                <label>Conferma:</label>
+                                <input [ngModel]="userr?.password" type="password" name="confermaPassword"
+                                    class="form-control" required #confirm="ngModel"
+                                    [ngStyle]="{'background-color': password.value != confirm.value ? '#fa8072' : 'white'}">
+                                    <div *ngIf="password.value != confirm.value" class="validation-error">Le password non coincidono!</div>
+                            </div> 
+<!--NUOVA CONFERMA PASSWORD-->  <!-- <div class="col-6"> 
+    
+                                <label>Conferma:</label>
+                                <input [(ngModel)]="confirmPassword" type="password" name="confermaPassword"
+                                    class="form-control" required #confirm="ngModel">
+                                <div class="text-danger" *ngIf="password.value !== confirm.value && confirm.dirty">
+                                    Le password non corrispondono
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <h5><i class="fas fa-home me-2"></i>Indirizzo di residenza</h5>
+                        <div class="col-6">
+                            <label>Via:</label>
+                            <input [ngModel]="userr?.address?.street" type="text" name="via" class="form-control"
+                                required
+                                pattern="[a-zA-Z0-9\sàèìòù'.]{1,50}" #street="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':street.invalid && street.dirty ? 'block' : 'none'}">
+                                    Indirizzo non valido
+                                </small>
+                            <!-- <input [ngModel]="userr?.address?.street" type="text" name="via" class="form-control"
+                                required #street="ngModel"> 
+                                <div *ngIf="f.controls['via']?.touched && f.controls['via'].invalid" class="validation-error">Inserisci via</div> -->
+                        </div>
+                        <div class="col-3">
+                            <label>Civico:</label>
+                            <input [ngModel]="userr?.address?.civic" type="text" name="civico" class="form-control"
+                                required
+                                pattern="[a-zA-Z\s0-9/_-]{1,20}" #civic="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':civic.invalid && civic.dirty ? 'block' : 'none'}">
+                                    Civico non valido
+                                </small>
+                            <!-- <input [ngModel]="userr?.address?.civic" type="text" name="civico" class="form-control"
+                                required #civic="ngModel">
+                                <div *ngIf="f.controls['civico']?.touched && f.controls['civico'].invalid" class="validation-error">Inserisci civico</div> -->
+                        </div>
+                        <div class="col-3"><label>Provincia:</label>
+                            <input [ngModel]="userr?.address?.province" type="text" name="provincia" class="form-control"
+                                required
+                                pattern="[a-zA-Z]{2}" #province="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':province.invalid && province.dirty ? 'block' : 'none'}">
+                                    Provincia non valida
+                                </small>
+                            <!-- <input [ngModel]="userr?.address?.province" type="text" name="provincia" class="form-control"
+                                required #province="ngModel">
+                                <div *ngIf="f.controls['provincia']?.touched && f.controls['provincia'].invalid" class="validation-error">Inserisci provincia</div>
+                            -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Comune:</label>
+                            <input [ngModel]="userr?.address?.town" type="text" name="comune" class="form-control"
+                                required
+                                pattern="[a-zA-Z\sàèìòù'.]{1,50}" #town="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':town.invalid && town.dirty ? 'block' : 'none'}">
+                                    Comune non valido
+                                </small>
+                            <!-- <input [ngModel]="userr?.address?.town" type="text" name="comune" class="form-control"
+                                required #town="ngModel"> 
+                                <div *ngIf="f.controls['comune']?.touched && f.controls['comune'].invalid" class="validation-error">Inserisci comune</div> -->
+                        </div>
+                        <div class="col-6">
+                            <label>CAP:</label>
+                            <input [ngModel]="userr?.address?.cap" type="text" name="cap" class="form-control" required
+                            pattern="[0-9]{5}" #cap="ngModel">
+                            <small class="text-danger" [ngStyle]="{'display':cap.invalid && cap.dirty ? 'block' : 'none'}">
+                                CAP non valido
+                            </small>
+                            <!-- <input [ngModel]="userr?.address?.cap" type="text" name="cap" class="form-control" required #cap="ngModel">
+                            <div *ngIf="f.controls['cap']?.touched && f.controls['cap'].invalid" class="validation-error">Inserisci cap</div> -->
+                        </div>
+                    </div>
+                    <!-- Dati di Pagamento -->
+                    <div class="row mt-4">
+                        <h5><i class="fa-regular fa-credit-card me-2" style="color: #000000;"></i>Dati di pagamento</h5>
+                        <div class="col-6">
+                            <label for="tipoCarta">Tipo Carta:</label>
+                            <select [ngModel]="userr?.payment?.type" name="tipoCarta" class="form-select" id="tipoCarta" required>
+                                <option value="Visa">Visa</option>
+                                <option value="MasterCard">MasterCard</option>
+                                <option value="American Express">American Express</option>
+                                <option value="Discover">Discover</option>
+                                <!-- Aggiungi altri tipi di carta secondo necessità -->
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label>Numero Carta:</label>
+                            <input [ngModel]="userr?.payment?.cardNumber" type="text" name="numeroCarta"
+                                class="form-control" required placeholder="0000 0000 0000 0000"
+                                pattern="[0-9]{16}" #cardNumber="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':cardNumber.invalid && cardNumber.dirty ? 'block' : 'none'}">
+                                    Numero carta non valido
+                                </small>
+                            <!-- <input [ngModel]="userr?.payment?.cardNumber" type="text" name="numeroCarta"
+                                class="form-control" required placeholder="0000 0000 0000 0000" #cardNumber="ngModel">
+                                <div *ngIf="f.controls['numeroCarta']?.touched && !checkRegexp(f.value.numeroCarta, '[0-9]{16}')" class="validation-error">Inserisci numero Carta corretta</div> -->
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6"> <!--holder-->
+                            <label>Titolare:</label>
+                            <input [ngModel]="userr?.payment?.holder" type="text" name="titolare" class="form-control"
+                                required
+                                pattern="[a-zA-Z\sàèìòù']{1,200}" #holder="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':holder.invalid && holder.dirty ? 'block' : 'none'}">
+                                    Titolare carta non valido
+                                </small>
+                            <!-- <input [ngModel]="userr?.payment?.holder" type="text" name="titolare" class="form-control"
+                                required #holder="ngModel">
+                                <div *ngIf="f.controls['titolare']?.touched && f.controls['titolare'].invalid" class="validation-error">Inserisci titolare</div> -->
+                        </div>
+                        <div class="col-6">
+                            <label>Scadenza:</label>
+                            <input [ngModel]="userr?.payment?.expiration" type="text" name="scadenza"
+                                class="form-control" required placeholder="01/01" pattern="^(0[1-9]|1[0-2])/\d{2}$" #expiration="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':expiration.invalid && expiration.dirty ? 'block' : 'none'}">
+                                    scadenza non valida
+                                </small>
+                            <!-- <input [ngModel]="userr?.payment?.expiration" type="text" name="scadenza"
+                                class="form-control" required placeholder="01/01"> 
+                                <div *ngIf="f.controls['scadenza']?.touched && !checkRegexp(f.value.scadenza, '^(0[1-9]|1[0-2])/\\d{2}$')" class="validation-error">Inserisci scadenza corretta</div> -->
+                                
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <!-- Immagine -->
+                    <div class="row">
+                        <h5><i class="fa-solid fa-camera me-2" style="color: #000000;"></i> Carica la tua patente</h5>
+                        <div class="col-12">
+                            <img [src]="licenseImage ? licenseImage : '../../../assets/image/Patente-speciale-BS-acmt-rete.jpg'"
+                                class="img-thumbnail" alt="image"
+                                style="width:300px;max-width:300px;height:150px;max-height:150px;">
+                        </div>
+                        <input type="file" name="licenseImage" class="form-control" accept="image/jpeg,image/png" maxlength="1048567" class="btn btn-outline-danger" style="display:none;"
+                        (change)="uploadLicenseImage($event)" #image required>
+                        <button type="button" class="btn btn-outline-danger mt-4 mx-auto"
+                        (click)="image.click()"
+                        style="max-width: 200px;">
+                        {{licenseImage ? 'Modifica patente' : 'Carica patente'}}
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="f.controls['password']?.touched && !checkRegexp(f.value.password, '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,10}')" class="validation-error"><ul>
+                    <li>Deve contenere almeno una cifra.</li>
+                    <li>Deve contenere almeno una lettera minuscola e maiuscola.</li>
+                    <li>Deve contenere almeno uno dei seguenti caratteri speciali: @, $, !, %, *, ?, &.</li>
+                    <li>Deve essere lungo tra 6 e 10 caratteri</li>.</ul></div>
+                <div class="row mt-4">
+                    <div class="col-12 text-center">
+                        <input type="submit" class="btn btn-outline-danger"
+                            [value]="userr ? 'Modifica dati' : 'Registrati'" [disabled]="password.value !== confirm.value ||f.invalid">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+                                <!--PATTERN VALIDAZIONE NOME-->
+<!-- <input [ngModel]="user?.name" type="text" name="nome" class="form-control" required
+                            pattern="[a-zA-Z\s'àèìòù]{1,100}" #name="ngModel">
+                            <small class="text-danger" [ngStyle]="{'display':name.invalid && name.dirty ? 'block' : 'none'}">
+                                caratteri non ammessi
+                            </small> -->
+
+                                <!--PATTERN VALIDAZIONE COGNOME-->
+<!-- <input [ngModel]="user?.lastname" type="text" name="cognome" class="form-control" required
+                            pattern="[a-zA-Z\s'àèìòù]{1,100}" #lastname="ngModel">
+                            <small class="text-danger" [ngStyle]="{'display':lastname.invalid && lastname.dirty ? 'block' : 'none'}">
+                                caratteri non ammessi
+                            </small> -->
+
+                            <!--PATTERN VALIDAZIONE COD FISCALE-->
+<!-- <input [ngModel]="user?.taxCode" type="text" name="codiceFiscale" class="form-control"
+                            required
+                            pattern="[A-Z]{6}\d{2}[ABCDEHLMPRST]{1}\d{2}[A-Z]\d{3}[A-Z]$" #taxCode="ngModel">
+                            <small class="text-danger" [ngStyle]="{'display':taxCode.invalid && taxCode.dirty ? 'block' : 'none'}">
+                                codice fiscale non valido
+                            </small> -->
+
+                                <!--PATTERN VALIDAZIONE PATENTE-->
+<!-- <input [ngModel]="user?.licenseNumber" type="text" name="numeroPatente" class="form-control"
+                                required pattern="[A-Za-z0-9]{1,10}$" #licenseNumber="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':licenseNumber.invalid && licenseNumber.dirty ? 'block' : 'none'}">
+                                    numero patente non valido
+                                </small> -->
+
+                                <!--PATTERN VALIDAZIONE MAIL-->
+<!-- <input [ngModel]="user?.mail" type="email" name="email" class="form-control" required
+                                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" #mail="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':mail.invalid && mail.dirty ? 'block' : 'none'}">
+                                    indirizzo e-mail non valido
+                                </small> -->
+
+                                <!--PATTERN VALIDAZIONE VIA-->
+<!-- <input [ngModel]="user?.address?.street" type="text" name="via" class="form-control"
+                                required
+                                pattern="[a-zA-Z0-9\sàèìòù'.]{1,100}" #street="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':street.invalid && street.dirty ? 'block' : 'none'}">
+                                    indirizzo non valido
+                                </small> -->
+
+                                <!--PATTERN VALIDAZIONE CIVICO-->
+<!-- <input [ngModel]="user?.address?.civic" type="text" name="civico" class="form-control"
+                                required
+                                pattern="[a-zA-Z0-9/_-]{1,20}" #civic="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':civic.invalid && civic.dirty ? 'block' : 'none'}">
+                                    civico non valido
+                                </small> -->
+
+                                <!--PATTERN VALIDAZIONE CAP-->
+<!-- <input [ngModel]="user?.address?.cap" type="text" name="cap" class="form-control" required
+                            pattern="[0-9]{5}" #cap="ngModel">
+                            <small class="text-danger" [ngStyle]="{'display':cap.invalid && cap.dirty ? 'block' : 'none'}">
+                                CAP non valido
+                            </small> -->
+
+                                <!--PATTERN VALIDAZIONE COMUNE-->
+<!-- <input [ngModel]="user?.address?.town" type="text" name="comune" class="form-control"
+                                required
+                                pattern="[a-zA-Z0-9\sàèìòù'.]{1,100}" #town="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':town.invalid && town.dirty ? 'block' : 'none'}">
+                                    comune non valido
+                                </small> -->
+                                
+                                <!--PATTERN VALIDAZIONE PROVINCIA-->
+<!-- <input [ngModel]="user?.address?.province" type="text" name="provincia" class="form-control"
+                                required
+                                pattern="[a-zA-Z]{2}" #province="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':province.invalid && province.dirty ? 'block' : 'none'}">
+                                    provincia non valida
+                                </small> -->
+
+                                <!--PATTERN VALIDAZIONE NUMERO CARTA-->
+<!-- <input [ngModel]="user?.payment?.cardNumber" type="text" name="numeroCarta"
+                                class="form-control" required placeholder="0000 0000 0000 0000"
+                                pattern="[0-9]" #cardNumber="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':province.invalid && province.dirty ? 'block' : 'none'}">
+                                    numero carta non valido
+                                </small> -->
+
+                                <!--PATTERN VALIDAZIONE TITOLARE-->
+<!-- <input [ngModel]="user?.payment?.holder" type="text" name="titolare" class="form-control"
+                                required
+                                pattern="[a-zA-Z\sàèìòù']{1,200}" #holder="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':holder.invalid && holder.dirty ? 'block' : 'none'}">
+                                    titolare carta non valido
+                                </small> -->
+
+                                <!--PATTERN VALIDAZIONE SCADENZA-->
+<!-- <input [ngModel]="user?.payment?.expiration" type="text" name="scadenza"
+                                class="form-control" required placeholder="01/01" pattern="[\d{2}/\d{2}$]" #expiration="ngModel">
+                                <small class="text-danger" [ngStyle]="{'display':expiration.invalid && expiration.dirty ? 'block' : 'none'}">
+                                    scadenza non valida
+                                </small> -->
+                                

@@ -1,0 +1,27 @@
+/* Aggiorna lo stile del contenuto */
+.content {
+    margin: 20px;
+}
+
+section, .row{
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.icon{
+    max-height: 150px;
+    max-width: auto;
+}
+
+article  {
+    font-size: 20px;
+}
+
+li {
+    margin-bottom: 20px;
+    font-size: medium;
+}
+
+p{
+    font-size: large;
+}

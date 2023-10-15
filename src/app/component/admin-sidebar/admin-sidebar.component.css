@@ -1,0 +1,23 @@
+.list-group-item {
+    border: none; /* Rimuove il bordo*/
+}
+
+hr{
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+aside.active {
+    border-radius: 5px;
+}
+
+aside {
+    float: right;
+    position: sticky;
+    top: 50px; /* Altezza della navbar o dell'header sopra la sidebar */
+    height: calc(100vh - 58px); /* Altezza rimanente della viewport */
+}
+
+ul{
+    padding-left: 0px;
+}

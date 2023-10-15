@@ -1,0 +1,70 @@
+
+
+<div class="popup-overlay" [ngClass]="{'visible':isVisible}">
+    <div class="popup">
+        
+        <div class="container">
+            <div class="modal-content">
+                <div class="text-center">
+                    <img src="../../../assets/image/logo_cs.png"
+                        style="width: 185px;" alt="logo">
+                    <h4 class="mt-1 mb-5 pb-1" style="color: #ffffff;">We are Car-Sharing</h4>
+                    <span class="close-btn" (click)="leaveLogin(f)">&times;</span>
+                    <h6 *ngIf="serverError" class="text-danger text-center mt-2">{{serverError}}</h6>
+                </div>
+                <form #f="ngForm" (submit)="formManager(f)">
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-5">
+                            <i class="fa-solid fa-envelope" style="color: #ffffff;"></i>
+                            <input [ngModel] type="text" name="mail" class="form-control" required>
+                            <label>E-mail</label>
+                        </div>
+                        <div class="md-form mb-4">
+                            <i class="fa-solid fa-lock" style="color: #ffffff;"></i>
+                            <input [ngModel] type="password" name="password" class="form-control" required>
+                            <label>Password</label>
+                        </div>
+                    </div>
+                    <div class="text-center pt-2 mb-6 pb-1">
+                        <button class="btn btn-danger btn-block gradient-custom-2 mb-3"
+                            type="submit" value="Accedi" [disabled]="f.invalid">Accedi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- VECCHIO FORM -->
+<!-- <div class="popup-overlay" [ngClass]="{'visible':isVisible}">
+    <div class="popup">
+        <div class="row">
+            <h5 class="text-dark text-center">Accesso Area Cliente</h5>
+            <h6 *ngIf="serverError" class="text-danger text-center">{{serverError}}</h6>
+        </div>
+        <form #f="ngForm" (submit)="formManager(f)">
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label>E-mail</label>
+                    <input [ngModel] type="text" name="mail" class="form-control" required>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label>Password:</label>
+                    <input [ngModel] type="password" name="password" class="form-control" required>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <button type="button" class="btn btn-outline-danger"
+                        (click)="leaveLogin(f)">
+                        Abbandona
+                    </button>
+                    <input type="submit" class="btn btn-outline-primary ms-4" value="Accedi" 
+                        [disabled]="f.invalid">
+                </div>
+            </div>
+        </form>
+    </div>
+</div> -->

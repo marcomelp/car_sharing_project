@@ -1,0 +1,45 @@
+<div class="popup-overlay" [ngClass]="{'visible': isVisible}">
+    <div class="popup">
+        <span class="close-btn"
+        (click)="deactivateStandoffAreaSchedaPopup()">&times;</span>
+        <div class="container">
+            <div class="row align-items-center">
+                <h5 class="text-dark text-center">Area di Stazionamento</h5>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-6 text-center">
+                    <img class="img-thumbnail" alt="cover" src="../../../assets/image/rome-maps.jpeg"
+                        style="width:200px;max-width:200px; height:200px; max-height:200px;">
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Indirizzo: </strong>
+                                <a [href]="'https://www.google.com/maps?q=' + standoffareas?.street" target="_blank">{{standoffareas?.street}}</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Civico: </strong> {{standoffareas?.civic}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Stato attuale: </strong>
+                                <i *ngIf="standoffareas?.state == 'L'" class="fa-solid fa-square-check fa-xs me-3 ripple" style="color: #4dff00;"></i>
+                                <i *ngIf="standoffareas?.state == 'O'" class="fa-solid fa-square-xmark fa-xs me-3 ripple" style="color: #ff0000;"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <button class="btn btn-danger"
+                    (click)="activateRemoveStandoffConfirmPopup(standoffareas!)">Elimina area di stazionamento</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

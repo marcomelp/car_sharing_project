@@ -1,0 +1,86 @@
+<div class="popup-overlay" [ngClass]="{'visible': isVisible}"> 
+    <div class="popup">
+        <span class="close-btn"
+        (click)="deactivateVehicleSchedaPopup()">&times;</span>
+        <div class="container">
+            <div class="row">
+                <h4 class="text-dark text-center">Noleggio veicolo {{vehicle?.plateNumber}}</h4>
+            </div>
+            <div class="row">
+                <div class="col-6 text-center">
+                    
+                    <img class="img-thumbnail" alt="mappa" src="../../../assets/image/rome-maps.jpeg"
+                        style="width:300px;max-width:300px; height:200px; max-height:200px;">
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Targa: </strong>{{vehicle?.plateNumber}}</p>    
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Km attuali: </strong>{{vehicle?.lastKm}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Area stazionamento: </strong>{{vehicle?.standoffArea?.code}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Indirizzo: </strong>
+                                <a [href]="'https://www.google.com/maps?q=' + vehicle?.standoffArea?.street + ' ' + vehicle?.standoffArea?.civic" target="_blank">
+                                    {{vehicle?.standoffArea?.street}} {{vehicle?.standoffArea?.civic}}
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Tariffa: </strong>{{vehicle?.rate}} Euro/minuto</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <!-- Prima sezione aggiuntiva -->
+                <div class="col-6">
+                    <div class="row">
+                        <h5 class="mb-3"><i class="fas fa-home me-2"></i>Indirizzo</h5>
+                        <div class="col-12">
+                            <p><strong>Ritiro: </strong>{{datiNoleggio![1]|date:'dd-MM-yyyy HH:mm'}}</p>    
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Riconsegna: </strong>{{datiNoleggio![2]|date:'dd-MM-yyyy HH:mm'}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Spesa prevista: </strong>{{importoNoleggio}} €</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Seconda sezione aggiuntiva -->
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h5 class="mb-3"><i class="fa-regular fa-credit-card me-2" style="color: #000000;"></i>Codice CVV</h5>
+                            <input type="text" placeholder="CVV" #cvv>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <!-- Centra il bottone al centro orizzontalmente -->
+                <div class="col-6 text-center">
+                    <button class="btn btn-outline-danger" (click)="confirmAndCreateRental()">Conferma prenotazione</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
