@@ -1,3 +1,5 @@
+# TO MAKE THE PROJECT WORK, YOU NEED TO OPEN AND START THE OTHER REPOSITORY.
+
 # CarSharing
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.4.
